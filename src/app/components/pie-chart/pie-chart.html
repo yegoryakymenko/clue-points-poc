@@ -1,0 +1,44 @@
+@if (clientData(); as clientData) {
+  <div class="pie-section">
+    <h4>Balance Distribution</h4>
+    <div class="pie-chart-container">
+      @if (clientData.accounts.length > 0) {
+        <svg class="pie-chart" width="120" height="120" viewBox="0 0 120 120">
+          <circle
+            cx="60"
+            cy="60"
+            r="50"
+            class="pie-slice positive-slice"
+            [attr.stroke-dasharray]="getPieSliceSize(clientData.accounts, true) + ' ' + (314 - getPieSliceSize(clientData.accounts, true))"
+            [class.highlighted]="pieFilter() === 'positive' && currentPieClientId() === clientData.client.id"
+            (click)="togglePieFilter('positive', clientData.client.id)"
+          />
+          <circle
+            cx="60"
+            cy="60"
+            r="50"
+            class="pie-slice negative-slice"
+            [attr.stroke-dasharray]="getPieSliceSize(clientData.accounts, false) + ' ' + (314 - getPieSliceSize(clientData.accounts, false))"
+            [attr.stroke-dashoffset]=" '-' + getPieSliceSize(clientData.accounts, true)"
+            [class.highlighted]="pieFilter() === 'negative' && currentPieClientId() === clientData.client.id"
+            (click)="togglePieFilter('negative', clientData.client.id)"
+          />
+        </svg>
+      } @else {
+        <div class="no-data">No data</div>
+      }
+
+      <div class="pie-legend">
+        <div class="legend-item">
+          <span class="legend-color positive"></span>
+          <span>Positive ({{ getPositiveAccountsCount(clientData.accounts) }})</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color negative"></span>
+          <span>Negative ({{ getNegativeAccountsCount(clientData.accounts) }})</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+}

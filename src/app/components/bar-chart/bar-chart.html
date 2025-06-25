@@ -1,0 +1,27 @@
+@if (clientData(); as clientData){
+  <div class="chart-section">
+    <h4>Account Balances</h4>
+    <div class="bar-chart" (click)="openModal.emit(clientData)">
+      <div class="bars-container">
+        @for (account of getVisibleAccounts(); track account.id) {
+          <div class="bar-wrapper">
+            <div
+              class="bar"
+              [class.positive]="account.balance >= 0"
+              [class.negative]="account.balance < 0"
+              [style.height.px]="getBarHeight(account.balance, clientData.accounts)"
+              [title]="account.card_type + ': $' + account.balance"
+            ></div>
+            <span class="bar-label">{{ account.card_type }}</span>
+          </div>
+        }
+        @if (getVisibleAccounts().length === 0) {
+          <div class="no-accounts">No accounts to display</div>
+        }
+      </div>
+      <div class="chart-axis">
+        <span class="axis-label">{{ accountTotalBalance() }}$</span>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,101 @@
+
+.client-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s, box-shadow 0.2s;
+  min-height: 650px;
+}
+
+.client-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.client-info {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.client-info h3 {
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+  font-size: 1.4em;
+}
+
+.address {
+  color: #7f8c8d;
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.birthday {
+  color: #95a5a6;
+  margin: 5px 0;
+  font-size: 0.85em;
+}
+
+.account-type-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/*move to global styles*/
+.filter-section h4 {
+  margin: 0 0 12px 0;
+  color: #34495e;
+  font-size: 1em;
+}
+
+
+.more-btn {
+  padding: 10px 20px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+  align-self: flex-start;
+}
+
+.more-btn:hover {
+  background: #2980b9;
+}
+
+.chart-axis {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 0.8em;
+  color: #95a5a6;
+}
+
+
+
+.filter-btn {
+  padding: 6px 12px;
+  border: 2px solid #3498db;
+  background: white;
+  color: #3498db;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: all 0.2s;
+}
+
+.filter-btn.active {
+  background: #3498db;
+  color: white;
+}
+
+.filter-btn.inactive {
+  opacity: 0.5;
+  background: #f8f9fa;
+  color: #6c757d;
+  border-color: #6c757d;
+}

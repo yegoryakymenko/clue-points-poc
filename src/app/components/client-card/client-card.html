@@ -1,0 +1,36 @@
+@if (clientData(); as clientData) {
+  <div class="client-card">
+    <div class="client-info">
+      <h3>{{ clientData.client.firstname }} {{ clientData.client.name }} / {{ clientData.client.id }}</h3>
+      <p class="address">{{ clientData.client.address }}</p>
+      @if (clientData.client.birthday !== 'None') {
+        <p class="birthday">Born: {{ clientData.client.birthday | date }}</p>
+      }
+
+    </div>
+
+    <div class="charts-container">
+      <div class="filter-section">
+        <h4>Account Types</h4>
+        <div class="account-type-filters">
+          @for (type of getUniqueAccountTypes(); track type) {
+            <button
+              [class]="'filter-btn ' + (isAccountTypeVisible(type) ? 'active' : 'inactive')"
+              (click)="toggleAccountType(type)"
+            >
+              {{ type }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <app-bar-chart [clientData]="clientData" [accountTypeFilters]="accountTypeFilters()" [pieFilter]="pieFilter()" [currentPieClientId]="currentPieClientId()" (openModal)="openAccountModal($event)"/>
+
+      <app-pie-chart [clientData]="clientData" (pieFilerOut)="pieFilter.set($event)" (currentPieClientIdOut)="currentPieClientId.set($event)"/>
+
+      <button class="more-btn" (click)="openAccountModal(clientData)">
+        More...
+      </button>
+    </div>
+  </div>
+}

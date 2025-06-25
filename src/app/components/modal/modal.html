@@ -1,0 +1,55 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      @if (selectedClient(); as client) {
+        <h2>{{ client.client.firstname }} {{ client.client.name }} - Account Details</h2>
+      }
+      <button class="close-btn" (click)="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      @if (selectedClient(); as client) {
+        <div class="account-list">
+          @for (account of client.accounts; track account.id) {
+            <div
+              class="account-item"
+              [class.positive]="account.balance >= 0"
+              [class.negative]="account.balance < 0"
+            >
+              <div class="account-info">
+                <h4>{{ account.card_type }}</h4>
+                <p>Account ID: {{ account.id }}</p>
+                <p class="balance">
+                  Balance:
+                  <span [class]="account.balance >= 0 ? 'positive-balance' : 'negative-balance'">
+                          ${{ account.balance.toLocaleString() }}
+                        </span>
+                </p>
+                @switch (account.card_type) {
+                  @case ('VISA') {
+                    <div class="account-badge visa">VISA Card</div>
+                  }
+                  @case ('MASTERCARD') {
+                    <div class="account-badge mastercard">MasterCard</div>
+                  }
+                  @case ('SAVINGS') {
+                    <div class="account-badge savings">Savings Account</div>
+                  }
+                  @case ('CHECKING') {
+                    <div class="account-badge checking">Checking Account</div>
+                  }
+                  @default {
+                    <div class="account-badge default">{{ account.card_type }}</div>
+                  }
+                }
+              </div>
+            </div>
+          } @empty {
+            <div class="no-accounts-modal">
+              <p>This client has no accounts associated.</p>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>
