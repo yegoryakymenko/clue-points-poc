@@ -32,7 +32,7 @@ jobs:
 
       - name: Build Angular project
         run: |
-          npx ng build --configuration=production --base-href=/clue-points-test/
+          npx ng build --configuration=production --base-href=/clue-points-poc/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
