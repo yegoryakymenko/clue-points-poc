@@ -10,8 +10,7 @@
               [class.positive]="account.balance >= 0"
               [class.negative]="account.balance < 0"
               [style.height.px]="getBarHeight(account.balance, clientData.accounts)"
-              [title]="account.card_type + ': $' + account.balance"
-            ></div>
+            >{{ account.balance }}</div>
             <span class="bar-label">{{ account.card_type }}</span>
           </div>
         }

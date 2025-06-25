@@ -18,15 +18,12 @@ export class BarChart {
 
   readonly accountTotalBalance = computed(() => this.getVisibleAccounts().reduce((prev, curr) => prev + curr.balance, 0));
 
-
-//computed
   getVisibleAccounts = computed<Account[]>(() => {
     const clientData = this.clientData();
     let visibleAccounts = clientData.accounts.filter(({ card_type }) =>
       this.accountTypeFilters().includes(card_type)
     );
 
-    // Apply pie filter if active for this client
     const currentPieFilter = this.pieFilter();
     const currentClientId = this.currentPieClientId();
 

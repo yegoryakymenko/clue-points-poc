@@ -39,6 +39,9 @@
   min-height: 5px;
   border-radius: 3px 3px 0 0;
   transition: all 0.2s;
+  font-size: 10px;
+  color: #fff5f5;
+  text-align: center;
 }
 
 .bar.positive {
@@ -52,7 +55,6 @@
 .bar-label {
   font-size: 0.7em;
   color: #7f8c8d;
-  transform: rotate(-45deg);
   white-space: nowrap;
 }
 

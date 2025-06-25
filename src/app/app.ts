@@ -38,7 +38,6 @@ export class App {
     this.modalService.setRootViewContainerRef(this.viewContainerRef);
   }
 
-  // UI state signals
   readonly searchTerm = signal<string>('');
   readonly loading = signal<boolean>(true);
   readonly filteredClients = computed(() => {

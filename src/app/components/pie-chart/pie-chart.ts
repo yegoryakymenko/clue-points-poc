@@ -20,7 +20,7 @@ export class PieChart {
       isPositive ? account.balance >= 0 : account.balance < 0
     );
     const percentage = accounts.length > 0 ? filteredAccounts.length / accounts.length : 0;
-    return percentage * 314; // 314 is approximate circumference for stroke-dasharray
+    return percentage * 314;
   }
 
   getPositiveAccountsCount(accounts: Account[]): number {
@@ -31,20 +31,16 @@ export class PieChart {
     return accounts.filter(account => account.balance < 0).length;
   }
 
-
-  // separate component
   togglePieFilter(filter: 'positive' | 'negative', clientId: string) {
     const currentFilter = this.pieFilter();
     const currentClientId = this.currentPieClientId();
 
     if (currentFilter === filter && currentClientId === clientId) {
-      // Deactivate filter
       this.pieFilter.set(null);
       this.currentPieClientId.set(null);
       this.pieFilerOut.emit(null);
       this.currentPieClientIdOut.emit(null);
     } else {
-      // Activate filter
       this.pieFilter.set(filter);
       this.currentPieClientId.set(clientId);
       this.pieFilerOut.emit(filter);
